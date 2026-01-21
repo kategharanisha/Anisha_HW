@@ -179,7 +179,25 @@
 
 
     
-Q18: Group students by score ranges (0-20, 21-30, 31-40, 41-50) and show count for each range.
+--Q18: Group students by score ranges (0-20, 21-30, 31-40, 41-50) and show count for each range.
+  SELECT
+  CASE
+  WHEN total_score IN (0,20) THEN '0-20'
+  WHEN total_score IN (21,30) THEN '21-30'
+  WHEN total_score IN (31,40) THEN '31-40'
+  ELSE '41-50'
+  END AS SCORE_RANGE, 
+  COUNT (*) AS COUNT_OF_RANGE
+  FROM
+  day_2_exam
+  GROUP BY CASE
+  WHEN total_score IN (0,20) THEN '0-20'
+  WHEN total_score IN (21,30) THEN '21-30'
+  WHEN total_score IN (31,40) THEN '31-40'
+  ELSE '41-50'
+  END
+  ORDER BY SCORE_RANGE
+    
 
 --Q19: For each result status, show count of students with scores greater than 30 and less than 40.
   SELECT
